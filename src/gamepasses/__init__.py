@@ -1,5 +1,5 @@
 class scrape:
-    gamepasses: list
+    gamepasses = {}
     games: list
     session: any
 
