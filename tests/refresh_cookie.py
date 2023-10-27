@@ -1,7 +1,7 @@
-import cookie
-import cookie.csrf_token as csrf_token
-import cookie.rbx_authentication_ticket as rbx_authentication_ticket
-import cookie.set_cookie as set_cookie
+import src.cookie
+import src.cookie.csrf_token as csrf_token
+import src.cookie.rbx_authentication_ticket as rbx_authentication_ticket
+import src.cookie.set_cookie as set_cookie
 
 import aiohttp
 import asyncio
