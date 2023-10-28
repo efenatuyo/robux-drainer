@@ -1,6 +1,5 @@
 import src.cookie as cookie
 
-import aiohttp
 import asyncio
 
 cookieClass = cookie.refresh()

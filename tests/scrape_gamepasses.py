@@ -1,6 +1,5 @@
 import src.gamepasses as experiences
 
-import aiohttp
 import asyncio
 
 gameClass = experiences.scrape(815394717)
