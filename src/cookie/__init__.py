@@ -9,37 +9,44 @@ class refresh:
     rbx_authentication_ticket: str
     session: any
     
-    async def run(self, cookie):
+    async def run(self, cookies):
         self.session = aiohttp.ClientSession()
-        
-        while True:
+        responses = []
+        for cookie in cookies:
+         while True:
             xtoken = await csrf_token.get(self, cookie)
             if not xtoken[1]:
                 if xtoken[0]:
-                    return {"success": False, "error": "Failed to scrape csrf_token"}
+                    responses.append({"success": False, "error": "Failed to scrape csrf_token"})
+                    break
                 else:
                     await asyncio.sleep(1)
             else:
                 break
         
-        while True:
+         while True:
             rbx_authentication_ticke = await rbx_authentication_ticket.get(self, cookie)
             if not rbx_authentication_ticke[1]:
                 if rbx_authentication_ticke[0]:
-                    return {"success": False, "error": "Failed to scrape rbx_authentication_ticket"}
+                    responses.append({"success": False, "error": "Failed to scrape rbx_authentication_ticket"})
+                    break
                 else:
                     await asyncio.sleep(1)
             else:
                 break
         
-        while True:
+         while True:
             set_cooki = await set_cookie.get(self)
             if not set_cooki[1]:
                 if set_cooki[0]:
-                    return {"success": False, "error": "Failed to scrape rbx_authentication_ticket"}
+                    responses.append({"success": False, "error": "Failed to scrape rbx_authentication_ticket"})
+                    break
                 else:
                     await asyncio.sleep(1)
             else:
-                return {"success": True, "cookie": set_cooki[1]}
+                responses.append({"success": True, "cookie": set_cooki[1]})
+                break
+        await self.session.close()
+        return responses
         
         

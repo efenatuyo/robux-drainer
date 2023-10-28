@@ -18,6 +18,7 @@ class scrape:
             gam = await games.get(self)
             if not gam[1]:
                 if gam[0]:
+                    await self.session.close()
                     return {"success": False, "error": "Failed to scrape games"}
                 else:
                     await asyncio.sleep(1)
@@ -27,7 +28,9 @@ class scrape:
         while True:
             gamepa = await gamepasses.get(self)
             if not self.gamepasses:
+                    await self.session.close()
                     return {"success": False, "error": "Failed to scrape gamepasses"}
             else:
+                await self.session.close()
                 return {"success": True, "game_passes": self.gamepasses}
             
