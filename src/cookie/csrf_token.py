@@ -3,4 +3,4 @@ async def get(self, cookie):
                                           cookies={".ROBLOSECURITY": cookie}))
     
     self.csrf_token = csrf_token.headers.get("x-csrf-token")
-    return csrf_token.status != 429, bool(self.csrf_token)
+    return csrf_token.status != 429, bool(self.csrf_token), self.csrf_token
