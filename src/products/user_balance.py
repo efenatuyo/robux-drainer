@@ -12,7 +12,7 @@ def split_money(self, balance: int):
     buy_form = {}
     for number in self.products:
         number = int(number)
-        if number == 0: continue
+        if number in [0, 1]: continue
         while True:
             if balance >= number:
                 balance -= number
