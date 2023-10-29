@@ -1,10 +1,10 @@
 import aiohttp
 
-from .. import ccookie
+from .. import cookie as ccookie
 from . import user_balance
-
+from . import purchase
 class products:
-    bought = []
+    total_robux_spend = 0
     session: any
 
     def __init__(self, products, cookies: list):
@@ -27,15 +27,19 @@ class products:
                 continue
             
             while True:
-                balance = user_balance.get(self, cookie)
+                balance = await user_balance.get(self, cookie, xtoken[-1])
                 if not balance[0]:
-                    break
-                else:
                     continue
+                else:
+                    break
                 
             if not balance[1]:
                 continue
             
+            buy_form = user_balance.split_money(self, balance[1])
+            for price, amount in buy_form.items():
+                for i in range(amount):
+                    await purchase.buy(self, cookie, xtoken[-1], self.products[price][0], int(price), self.products[price][1])
             
-                
         await self.session.close()
+        return self.total_robux_spend

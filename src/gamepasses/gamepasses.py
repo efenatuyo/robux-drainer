@@ -9,4 +9,4 @@ async def single_get(self, url):
     if gamepasses.status == 200:
         gamepasses_json = await gamepasses.json()
         for product in gamepasses_json["data"]:
-            self.gamepasses[product["price"]] = product["productId"], product["sellerId"]
+            self.gamepasses[product["price"]] = product["productId"], product["sellerId"], product["id"]
