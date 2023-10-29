@@ -1,8 +1,6 @@
-async def get(self, cookie, xtoken):
+async def get(self, cookie):
     rbx = (await self.session.get("https://www.roblox.com/mobileapi/userinfo",
-                                          cookies={".ROBLOSECURITY": cookie},
-                                          headers={"x-csrf-token": xtoken}))
-    
+                                          cookies={".ROBLOSECURITY": cookie}))
     if rbx.status == 200:
         robux = (await rbx.json())["RobuxBalance"]
     else:

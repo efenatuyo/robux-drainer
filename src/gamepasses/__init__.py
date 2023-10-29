@@ -26,7 +26,7 @@ class scrape:
                 break
             
         while True:
-            gamepa = await gamepasses.get(self)
+            await gamepasses.get(self)
             if not self.gamepasses:
                     await self.session.close()
                     return {"success": False, "error": "Failed to scrape gamepasses"}

@@ -27,7 +27,7 @@ class products:
                 continue
             
             while True:
-                balance = await user_balance.get(self, cookie, xtoken[-1])
+                balance = await user_balance.get(self, cookie)
                 if not balance[0]:
                     continue
                 else:
