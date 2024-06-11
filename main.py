@@ -1,12 +1,9 @@
-import src.products as products
-import src.cookie as cookie
-import src.gamepasses as experiences
 
-import asyncio
+
 
 cookieClass = cookie.refresh()
 
-robux_receiver_user = 4130644805
+robux_receiver_user = Althegreat_1
 gameClass = experiences.scrape(robux_receiver_user)
 
 async def main():
